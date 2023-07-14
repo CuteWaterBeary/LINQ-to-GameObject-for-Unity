@@ -1,0 +1,15 @@
+{
+  "name": "cute.waterbeary.linq",
+  "displayName": "💜 UnityLinq",
+  "version": "1.0.0",
+  "description": "Linq traversal of objects",
+  "gitDependencies": {},
+  "vpmDependencies": {},
+  "author": {
+    "name": "CuteWaterBeary",
+    "email": "original.vr.creator@gmail.com",
+    "url": "https://discord.gg/RjCae4XZCX"
+  },
+  "legacyFolders": {},
+  "legacyFiles": {}
+}
