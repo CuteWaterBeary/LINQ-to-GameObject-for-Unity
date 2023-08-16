@@ -1,8 +1,6 @@
 {
-  "name": "cute.waterbeary.linq.Editor",
-  "references": [
-    "cute.waterbeary.linq"
-  ],
+  "name": "CuteWaterBeary.linq",
+  "references": [],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
