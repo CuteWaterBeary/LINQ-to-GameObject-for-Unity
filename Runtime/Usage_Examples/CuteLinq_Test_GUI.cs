@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Linq;
+using Unity.Linq;
 
-using Unity.Linq; // using LINQ to GameObject
-
-// This script is attached to Root.
+// This script is attached to Root GameObject.
 
 namespace Unity.Linq.Sample
 {
-    public class Example_with_GUI_script : MonoBehaviour
+    public class CuteLinq_Test_GUI : MonoBehaviour
     {
         GameObject[] array = new GameObject[0];
 
