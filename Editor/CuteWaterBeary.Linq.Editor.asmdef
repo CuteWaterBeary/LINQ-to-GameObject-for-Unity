@@ -1,14 +1,17 @@
 {
-  "name": "CuteWaterBeary.Linq.Editor",
-  "references": [
-    "cute.waterbeary.linq"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "autoReferenced": true,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "defineConstraints": [],
-  "optionalUnityReferences": []
+    "name": "CuteWaterBeary.Linq.Editor",
+    "references": [
+        "GUID:edfed67816a65b64db2433cdc939c12f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
