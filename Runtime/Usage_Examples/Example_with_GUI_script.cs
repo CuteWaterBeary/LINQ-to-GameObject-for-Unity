@@ -7,7 +7,7 @@ using Unity.Linq; // using LINQ to GameObject
 
 namespace Unity.Linq.Sample
 {
-    public class SampleSceneScript : MonoBehaviour
+    public class Example_with_GUI_script : MonoBehaviour
     {
         GameObject[] array = new GameObject[0];
 

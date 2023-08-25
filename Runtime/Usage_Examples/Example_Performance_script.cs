@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine.Profiling;
 #endif
 
-public class Perf : MonoBehaviour
+public class Example_Performance_script : MonoBehaviour
 {
     public Button linq;
     public Button native;
