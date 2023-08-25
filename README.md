@@ -1,6 +1,123 @@
 LINQ to GameObject
 ===
-LINQ to GameObject is GameObject extensions for Unity that allows traverse hierarchy and append GameObject. The design aims both to get the power of LINQ and **performance** of iteration.
+Efficiently traverse hierarchy and append GameObject.
+
+How to use
+---
+
+All methods are extension of GameObject, using `Cute.Linq` then you can use all extension methods.
+
+```csharp
+using Cute.Linq;
+```
+![](Images/using.jpg)
+
+
+![image](Images/linqq.png)
+
+```csharp
+var root = GameObject.Find("root");
+var cube = Resources.Load("Prefabs/PrefabCube") as GameObject;
+
+// add do attach parent, set same layer and fix localPosition/Scale/Rotation.
+// added child is cloned and returns child object.
+var clone = root.Add(cube);
+
+// choose sibling position and allow append multiple objects.
+var clones = root.AddAfterSelfRange(new[] { cube, cube, cube });
+
+// destroy do check null.
+root.Destroy();
+```
+
+Add method's child is cloned. It is useful for instantiate prefab scenario. If you want to move only child, you can use(`MoveToLast`, `MoveToFirst`, `MoveToBeforeSelf`, `MoveToAfterSelf`) and (`MoveToLastRange`, `MoveToFirstRange`, `MoveToBeforeSelfRange`, `MoveToAfterSelfRange`) instead of Add.
+
+
+API Reference : Traverse
+---
+All traverse methods can find inactive object. If not found, return type is `GameObject` methods return null, return type is `IEnumerable<GameObject>` methods return empty sequence.
+
+Method | Description
+-------| -----------
+Parent                  | Gets the parent gObj of this gObj. If this gObj has no parent, returns null.
+Child                    | Gets the first child gObj with the specified name. If there is no gObj with the speficided name, returns null.
+Children               | Returns a collection of the child gObjs.
+ChildrenAndSelf   | Returns a collection of gObjs that contain this gObj, and the child gObjs.
+Ancestors              | Returns a collection of the ancestor gObjs of this gObj.
+AncestorsAndSelf   | Returns a collection of gObjs that contain this element, and the ancestors of this gObj.
+Descendants           | Returns a collection of the descendant gObjs.
+DescendantsAndSelf | Returns a collection of gObjs that contain this gObj, and all descendant gObjs of this gObj.
+BeforeSelf               | Returns a collection of the sibling gObjs before this gObj.
+BeforeSelfAndSelf    | Returns a collection of gObjs that contain this gObj, and the sibling gObjs before this gObj.
+AfterSelf                  | Returns a collection of the sibling gObjs after this gObj.
+AfterSelfAndSelf      | Returns a collection of gObjs that contain this gObj, and the sibling gObjs after this gObj.
+
+`Descendants` has `descendIntoChildren` overload, it stops traverse children when does not match condition.
+
+API Reference : Operate
+---
+Operate methods have four optional parameter. `cloneType` configure cloned child GameObject's localPosition/Scale/Rotation, default copies original local transform. `setActive` configure activates/deactivates child GameObject. If null, doesn't set specified value. `specifiedName` configure set name of child GameObject. If null, doesn't set specified value. `setLayer` configure set child GameObject's layer same with parent, default doesn't set layer.
+
+Method | Description
+------- | -----------
+Add | Adds the gObj/Component as children of this gObj. Target is cloned.
+AddRange | Adds the gObj/Component as children of this gObj. Target is cloned.
+AddFirst | Adds the gObj/Component as the first children of this gObj. Target is cloned.
+AddFirstRange | Adds the gObj/Component as the first children of this gObj. Target is cloned.
+AddBeforeSelf | Adds the gObj/Component before this gObj. Target is cloned.
+AddBeforeSelfRange | Adds the gObj/Component before this gObj. Target is cloned.
+AddAfterSelf | Adds the gObj/Component after this gObj. Target is cloned.
+AddAfterSelfRange | Adds the gObj/Component after this gObj. Target is cloned.
+Destroy | Destroy this gObj safety(check null).
+
+There are `TransformCloneType` that used Add methods.
+
+> If target is `RectTransform` always use `SetParent(parent, false)` and ignores `TransformCloneType`
+
+Value | Description
+------- | -----------
+KeepOriginal | Set to same as Original. This is default of Add methods.
+FollowParent | Set to same as Parent.
+Origin          | Set to Position = zero, Scale = one, Rotation = identity.
+DoNothing    | Position/Scale/Rotation as is.
+
+MoveTo methods similar with Add but don't clone target.
+
+Method | Description
+------- | -----------
+MoveToLast | Move the gObj/Component as children of this gObj.
+MoveToLastRange | Move the gObj/Component as children of this gObj.
+MoveToFirst | Move the gObj/Component as the first children of this gObj.
+MoveToFirstRange | Move the gObj/Component as the first children of this gObj.
+MoveToBeforeSelf | Move the gObj/Component before this gObj.
+MoveToBeforeSelfRange | Move the gObj/Component before this gObj.
+MoveToAfterSelf | Move the gObj/Component after this gObj.
+MoveToAfterSelfRange | Move the gObj/Component after this gObj.
+
+There are `TransformMoveType` that used MoveTo methods.
+
+> If target is `RectTransform` always use `SetParent(parent, false)` and ignores `TransformMoveType`
+
+Value | Description
+------- | -----------
+FollowParent | Set to same as Parent.
+Origin | Set to Position = zero, Scale = one, Rotation = identity.
+DoNothing | Position/Scale/Rotation as is. This is default of MoveTo methods.
+
+Reference : Extensions
+---
+`IEnumerable<GameObject>` Extensions. If multiple GameObjects in the source collection have the same GameObject will be included multiple times in the result collection. To avoid this, use the `Distinct`(LINQ to Objects) method.
+
+Method | Description
+------- | -----------
+Ancestors | Returns a collection of gObjs that contains the ancestors of every gObj in the source collection.
+AncestorsAndSelf | Returns a collection of gObjs that contains every gObj in the source collection, and the ancestors of every gObj in the source collection.
+Descendants | Returns a collection of gObjs that contains the descendant gObjs of every gObj in the source collection.
+DescendantsAndSelf | Returns a collection of gObjs that contains every gObj in the source collection, and the descendent gObjs of every gObj in the source collection.
+Children | Returns a filtered collection of the child gObjs of every gObj in the source collection. Only gObjs that have a matching name are included in the collection.
+ChildrenAndSelf | Returns a collection of gObjs that contains every gObj in the source collection, and the child gObjs of every gObj in the source collection.
+Destroy | Destroy every gObj in the source collection safety(check null).
+OfComponent | Returns a collection of specified component in the source collection.
 
 Axis
 ---
@@ -34,128 +151,8 @@ origin.transform.root.gameObject
 var fooScripts = root.ChildrenAndSelf().OfComponent<FooScript>();
 ```
 
-> Note: LINQ to GameObject is optimized for iteration, returns struct enumerable and struct enumerator instead of `IEnumerable<GameObject>`. More details, see the [Peformance Tips](https://github.com/neuecc/LINQ-to-GameObject-for-Unity#performance-tips) section.
+> Note: LINQ to GameObject is optimized for iteration, returns struct enumerable and struct enumerator instead of `IEnumerable<GameObject>`.
 
-How to use
----
-
-All methods are extension of GameObject, using `Cute.Linq` then you can use all extension methods.
-
-```csharp
-using Cute.Linq;
-```
-![](Images/using.jpg)
-
-Operate
----
-LINQ to GameObject have several operate methods, append child(`Add`, `AddFirst`, `AddBeforeSelf`, `AddAfterSelf`), append multiple objects(`AddRange`, `AddFirstRange`, `AddBeforeSelfRange`, `AddAfterSelfRange`) and destroy object(`Destroy`).
-
-![image](Images/linqq.png)
-
-```csharp
-var root = GameObject.Find("root");
-var cube = Resources.Load("Prefabs/PrefabCube") as GameObject;
-
-// add do attach parent, set same layer and fix localPosition/Scale/Rotation.
-// added child is cloned and returns child object.
-var clone = root.Add(cube);
-
-// choose sibling position and allow append multiple objects.
-var clones = root.AddAfterSelfRange(new[] { cube, cube, cube });
-
-// destroy do check null.
-root.Destroy();
-```
-
-Add method's child is cloned. It is useful for instantiate prefab scenario. If you want to move only child, you can use(`MoveToLast`, `MoveToFirst`, `MoveToBeforeSelf`, `MoveToAfterSelf`) and (`MoveToLastRange`, `MoveToFirstRange`, `MoveToBeforeSelfRange`, `MoveToAfterSelfRange`) instead of Add.
-
-All operate methods are extension methods of GameObject, too. You need `using Cute.Linq`.
-
-Reference : Traverse
----
-All traverse methods can find inactive object. If not found, return type is `GameObject` methods return null, return type is `IEnumerable<GameObject>` methods return empty sequence.
-
-Method | Description
--------| -----------
-Parent|Gets the parent GameObject of this GameObject. If this GameObject has no parent, returns null.
-Child|Gets the first child GameObject with the specified name. If there is no GameObject with the speficided name, returns null.
-Children|Returns a collection of the child GameObjects.
-ChildrenAndSelf|Returns a collection of GameObjects that contain this GameObject, and the child GameObjects.
-Ancestors|Returns a collection of the ancestor GameObjects of this GameObject.
-AncestorsAndSelf|Returns a collection of GameObjects that contain this element, and the ancestors of this GameObject.
-Descendants|Returns a collection of the descendant GameObjects.
-DescendantsAndSelf|Returns a collection of GameObjects that contain this GameObject, and all descendant GameObjects of this GameObject.
-BeforeSelf|Returns a collection of the sibling GameObjects before this GameObject.
-BeforeSelfAndSelf|Returns a collection of GameObjects that contain this GameObject, and the sibling GameObjects before this GameObject.
-AfterSelf|Returns a collection of the sibling GameObjects after this GameObject.
-AfterSelfAndSelf|Returns a collection of GameObjects that contain this GameObject, and the sibling GameObjects after this GameObject.
-
-`Descendants` has `descendIntoChildren` overload, it stops traverse children when does not match condition.
-
-Reference : Operate
----
-Operate methods have four optional parameter. `cloneType` configure cloned child GameObject's localPosition/Scale/Rotation, default copies original local transform. `setActive` configure activates/deactivates child GameObject. If null, doesn't set specified value. `specifiedName` configure set name of child GameObject. If null, doesn't set specified value. `setLayer` configure set child GameObject's layer same with parent, default doesn't set layer.
-
-Method | Description
--------| -----------
-Add|Adds the GameObject/Component as children of this GameObject. Target is cloned.
-AddRange|Adds the GameObject/Component as children of this GameObject. Target is cloned.
-AddFirst|Adds the GameObject/Component as the first children of this GameObject. Target is cloned.
-AddFirstRange|Adds the GameObject/Component as the first children of this GameObject. Target is cloned.
-AddBeforeSelf|Adds the GameObject/Component before this GameObject. Target is cloned.
-AddBeforeSelfRange|Adds the GameObject/Component before this GameObject. Target is cloned.
-AddAfterSelf|Adds the GameObject/Component after this GameObject. Target is cloned.
-AddAfterSelfRange|Adds the GameObject/Component after this GameObject. Target is cloned.
-Destroy|Destroy this GameObject safety(check null).
-
-There are `TransformCloneType` that used Add methods.
-
-> If target is `RectTransform` always use `SetParent(parent, false)` and ignores `TransformCloneType`
-
-Value|Description
--------| -----------
-KeepOriginal|Set to same as Original. This is default of Add methods.
-FollowParent|Set to same as Parent.
-Origin|Set to Position = zero, Scale = one, Rotation = identity.
-DoNothing|Position/Scale/Rotation as is.
-
-MoveTo methods similar with Add but don't clone target.
-
-Method | Description
--------| -----------
-MoveToLast|Move the GameObject/Component as children of this GameObject.
-MoveToLastRange|Move the GameObject/Component as children of this GameObject.
-MoveToFirst|Move the GameObject/Component as the first children of this GameObject.
-MoveToFirstRange|Move the GameObject/Component as the first children of this GameObject.
-MoveToBeforeSelf|Move the GameObject/Component before this GameObject.
-MoveToBeforeSelfRange|Move the GameObject/Component before this GameObject.
-MoveToAfterSelf|Move the GameObject/Component after this GameObject.
-MoveToAfterSelfRange|Move the GameObject/Component after this GameObject.
-
-There are `TransformMoveType` that used MoveTo methods.
-
-> If target is `RectTransform` always use `SetParent(parent, false)` and ignores `TransformMoveType`
-
-Value|Description
--------| -----------
-FollowParent|Set to same as Parent.
-Origin|Set to Position = zero, Scale = one, Rotation = identity.
-DoNothing|Position/Scale/Rotation as is. This is default of MoveTo methods.
-
-Reference : Extensions
----
-`IEnumerable<GameObject>` Extensions. If multiple GameObjects in the source collection have the same GameObject will be included multiple times in the result collection. To avoid this, use the `Distinct`(LINQ to Objects) method.
-
-Method|Description
--------|-----------
-Ancestors|Returns a collection of GameObjects that contains the ancestors of every GameObject in the source collection.
-AncestorsAndSelf|Returns a collection of GameObjects that contains every GameObject in the source collection, and the ancestors of every GameObject in the source collection.
-Descendants|Returns a collection of GameObjects that contains the descendant GameObjects of every GameObject in the source collection.
-DescendantsAndSelf|Returns a collection of GameObjects that contains every GameObject in the source collection, and the descendent GameObjects of every GameObject in the source collection.
-Children|Returns a filtered collection of the child GameObjects of every GameObject in the source collection. Only GameObjects that have a matching name are included in the collection.
-ChildrenAndSelf|Returns a collection of GameObjects that contains every GameObject in the source collection, and the child GameObjects of every GameObject in the source collection.
-Destroy|Destroy every GameObject in the source collection safety(check null).
-OfComponent|Returns a collection of specified component in the source collection.
 
 Performance Tips
 ---
