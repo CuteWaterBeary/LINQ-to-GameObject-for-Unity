@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.Linq
+namespace Cute.Linq
 {
     public static partial class GameObjectExtensions
     {
@@ -123,7 +123,7 @@ namespace Unity.Linq
                     yield return component;
                 }
 #else
-                        
+
                 var component = item.GetComponent<T>();
                 if (component != null)
                 {

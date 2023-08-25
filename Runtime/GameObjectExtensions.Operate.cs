@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.Linq
+namespace Cute.Linq
 {
     /// <summary>
     /// Set type of cloned child GameObject's localPosition/Scale/Rotation.
@@ -189,7 +189,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginal">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>      
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -209,7 +209,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginals">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>       
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -231,7 +231,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginal">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>     
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -257,7 +257,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginals">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>     
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -284,7 +284,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginal">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>     
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -308,7 +308,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childOriginals">Clone Target.</param>
-        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>     
+        /// <param name="cloneType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="specifiedName">Set name of child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
@@ -339,7 +339,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="child">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>      
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T MoveToLast<T>(this GameObject parent, T child, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -455,7 +455,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="child">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>      
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T MoveToFirst<T>(this GameObject parent, T child, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -474,7 +474,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childs">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>       
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T[] MoveToFirstRange<T>(this GameObject parent, IEnumerable<T> childs, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -496,7 +496,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="child">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>      
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T MoveToBeforeSelf<T>(this GameObject parent, T child, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -520,7 +520,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childs">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>       
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T[] MoveToBeforeSelfRange<T>(this GameObject parent, IEnumerable<T> childs, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -547,7 +547,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="child">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>      
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T MoveToAfterSelf<T>(this GameObject parent, T child, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)
@@ -570,7 +570,7 @@ namespace Unity.Linq
         /// </summary>
         /// <param name="parent">Parent GameObject.</param>
         /// <param name="childs">Target.</param>
-        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>       
+        /// <param name="moveType">Choose set type of cloned child GameObject's localPosition/Scale/Rotation.</param>
         /// <param name="setActive">Set activates/deactivates child GameObject. If null, doesn't set specified value.</param>
         /// <param name="setLayer">Set layer of child GameObject same with parent.</param>
         public static T[] MoveToAfterSelfRange<T>(this GameObject parent, IEnumerable<T> childs, TransformMoveType moveType = TransformMoveType.DoNothing, bool? setActive = null, bool setLayer = false)

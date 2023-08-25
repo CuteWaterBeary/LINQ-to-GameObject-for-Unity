@@ -6,7 +6,7 @@ using Cute.Linq;
 
 namespace Cute.Linq.Sample
 {
-    public class CuteLinq_Test_GUI : MonoBehaviour
+    public class CuteLinq_GUI_Example : MonoBehaviour
     {
         GameObject[] array = new GameObject[0];
 

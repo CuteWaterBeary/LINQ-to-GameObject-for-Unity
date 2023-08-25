@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.Linq
+namespace Cute.Linq
 {
     // API Frontend
 
@@ -534,7 +534,7 @@ namespace Unity.Linq
                             return true;
                         }
 #else
-                        
+
                         var component = enumerator.Current.GetComponent<T>();
                         if (component != null)
                         {
@@ -971,7 +971,7 @@ namespace Unity.Linq
                             return true;
                         }
 #else
-                        
+
                         var component = enumerator.Current.GetComponent<T>();
                         if (component != null)
                         {
@@ -1733,7 +1733,7 @@ namespace Unity.Linq
                             return true;
                         }
 #else
-                        
+
                         var component = enumerator.Current.GetComponent<T>();
                         if (component != null)
                         {
@@ -2191,7 +2191,7 @@ namespace Unity.Linq
                             return true;
                         }
 #else
-                        
+
                         var component = enumerator.Current.GetComponent<T>();
                         if (component != null)
                         {
@@ -2633,7 +2633,7 @@ namespace Unity.Linq
                             return true;
                         }
 #else
-                        
+
                         var component = enumerator.Current.GetComponent<T>();
                         if (component != null)
                         {
